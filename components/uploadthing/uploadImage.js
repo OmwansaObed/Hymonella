@@ -49,7 +49,7 @@ export default function UploadImage({ onChange, existingImages = [] }) {
             {uploadedImages.map((imageUrl, index) => (
               <div key={`uploaded-${index}`} className="relative group">
                 <div className="h-80 w-80 rounded-lg shadow-lg overflow-hidden ">
-                  <Image
+                  <img
                     src={imageUrl}
                     alt={`Uploaded ${index + 1}`}
                     className="object-cover w-full h-full"

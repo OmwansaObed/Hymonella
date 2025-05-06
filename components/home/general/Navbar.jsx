@@ -107,7 +107,7 @@ export const Navbar = () => {
               <span>Favorites</span>
             </Link>
 
-            <Link
+            {/* <Link
               href="/hymns/categories"
               className={`px-3 py-2 rounded-full transition-all flex items-center space-x-1 ${
                 isScrolled
@@ -117,7 +117,7 @@ export const Navbar = () => {
             >
               <BookOpen size={18} />
               <span>Categories</span>
-            </Link>
+            </Link> */}
           </nav>
 
           {/* Dashboard and User Profile Section */}
@@ -147,7 +147,7 @@ export const Navbar = () => {
                   } transition-colors`}
                 >
                   {session.user.image ? (
-                    <Image
+                    <img
                       src={session.user.image}
                       alt="User profile"
                       className="w-full h-full border border-gray-300 rounded-full object-cover"
@@ -272,7 +272,7 @@ export const Navbar = () => {
                 <div className="p-3 flex items-center space-x-3 rounded-lg">
                   <div className="flex items-center space-x-3 border border-white rounded-full ">
                     {session.user.image ? (
-                      <Image
+                      <img
                         src={session.user.image}
                         alt="User profile"
                         className="w-8 h-8 rounded-full object-cover"

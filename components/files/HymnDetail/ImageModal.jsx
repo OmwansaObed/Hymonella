@@ -15,7 +15,7 @@ export default function ImageModal({ expandedImage, closeImageModal }) {
         >
           <X size={24} />
         </button>
-        <Image
+        <img
           src={expandedImage}
           alt="Enlarged view"
           className="max-w-full max-h-full object-contain"

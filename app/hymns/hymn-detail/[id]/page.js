@@ -493,7 +493,7 @@ const HymnDetailPage = () => {
                       className="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md group cursor-pointer relative"
                       onClick={() => openImageModal(img)}
                     >
-                      <Image
+                      <img
                         src={img}
                         alt={`${hymn.title} music sheet ${index + 1}`}
                         className="object-cover w-full h-full transform group-hover:scale-105 transition-transform"
@@ -562,33 +562,6 @@ const HymnDetailPage = () => {
             <ArrowLeft size={18} className="mr-2" />
             All Hymns
           </Link>
-
-          <div className="flex gap-3 justify-center sm:justify-end">
-            <Link
-              href={`/hymns/hymn-detail/${parseInt(hymn.hymnNumber) - 1}`}
-              className={`px-4 py-2 rounded-lg shadow flex items-center ${
-                parseInt(hymn.hymnNumber) > 1
-                  ? "bg-white text-indigo-600 hover:bg-indigo-50"
-                  : "bg-gray-100 text-gray-400 cursor-not-allowed"
-              } transition-colors`}
-              onClick={(e) => {
-                if (parseInt(hymn.hymnNumber) <= 1) {
-                  e.preventDefault();
-                }
-              }}
-            >
-              <ArrowLeft size={18} className="mr-2" />
-              Previous
-            </Link>
-
-            <Link
-              href={`/hymns/hymn-detail/${parseInt(hymn.hymnNumber) + 1}`}
-              className="px-4 py-2 bg-white text-indigo-600 rounded-lg shadow hover:bg-indigo-50 flex items-center transition-colors"
-            >
-              Next
-              <ArrowRight size={18} className="ml-2" />
-            </Link>
-          </div>
         </div>
       </div>
       <CommentsList hymnId={id} />
@@ -611,7 +584,7 @@ const HymnDetailPage = () => {
             >
               <X size={24} />
             </button>
-            <Image
+            <img
               src={expandedImage}
               alt="Enlarged view"
               className="max-w-full max-h-full object-contain"

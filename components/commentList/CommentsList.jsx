@@ -68,17 +68,17 @@ export default function CommentsList({ hymnId }) {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center p-8 text-indigo-600">
-        <div className="w-8 h-8 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin mr-2"></div>
-        <span className="font-medium">Loading comments...</span>
+      <div className="flex justify-center items-center p-4 text-indigo-600">
+        <div className="w-6 h-6 border-3 border-indigo-400 border-t-transparent rounded-full animate-spin mr-2"></div>
+        <span className="font-medium text-sm">Loading comments...</span>
       </div>
     );
 
   return (
-    <div className="mt-8 space-y-6 mx-10">
-      <div className="mb-6">
-        <h3 className="text-2xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-2 flex items-center">
-          <MessageCircle size={22} className="inline mr-2 text-indigo-500" />
+    <div className="mt-4 md:mt-8 space-y-4 md:space-y-6 px-3 sm:px-6 md:px-10">
+      <div className="mb-4 md:mb-6">
+        <h3 className="text-xl md:text-2xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-2 flex items-center">
+          <MessageCircle size={20} className="inline mr-2 text-indigo-500" />
           Community Reflections
         </h3>
         <div className="h-1 w-20 bg-gradient-to-r from-indigo-400 to-purple-400 rounded"></div>
@@ -87,15 +87,15 @@ export default function CommentsList({ hymnId }) {
       <CommentForm hymnId={hymnId} onCommentAdded={handleNewComment} />
 
       <div>
-        <h2 className="text-2xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-2 flex items-center">
+        <h2 className="text-xl md:text-2xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-2 flex items-center">
           All Comments
         </h2>
       </div>
 
-      <div className="space-y-4 mt-8">
+      <div className="space-y-4 mt-4 md:mt-8">
         {comments.length === 0 ? (
-          <div className="bg-white bg-opacity-80 p-6 rounded-xl shadow-sm text-center border-l-4 border-indigo-300">
-            <p className="text-gray-600 italic">
+          <div className="bg-white bg-opacity-80 p-4 md:p-6 rounded-xl shadow-sm text-center border-l-4 border-indigo-300">
+            <p className="text-gray-600 italic text-sm md:text-base">
               No comments yet. Be the first to share your thoughts!
             </p>
           </div>
@@ -103,7 +103,7 @@ export default function CommentsList({ hymnId }) {
           comments.map((comment) => (
             <div
               key={comment._id}
-              className="bg-gradient-to-br from-white to-indigo-50 rounded-xl shadow-sm p-5 border-l-4 border-indigo-200 hover:shadow-md transition-all relative"
+              className="bg-gradient-to-br from-white to-indigo-50 rounded-xl shadow-sm p-3 md:p-5 border-l-4 border-indigo-200 hover:shadow-md transition-all relative"
             >
               {editingCommentId === comment._id ? (
                 <CommentForm
@@ -114,11 +114,11 @@ export default function CommentsList({ hymnId }) {
                 />
               ) : (
                 <>
-                  <div className="flex justify-between items-start mb-3">
-                    <div className="flex items-center">
-                      <div className="bg-gradient-to-br rounded-full mr-3">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2 md:mb-3">
+                    <div className="flex items-center mb-2 sm:mb-0">
+                      <div className="bg-gradient-to-br rounded-full mr-2">
                         {comment.user?.image ? (
-                          <Image
+                          <img
                             src={comment.user.image}
                             alt={comment.user.name}
                             className="w-6 h-6 rounded-full"
@@ -127,29 +127,22 @@ export default function CommentsList({ hymnId }) {
                           <User size={16} className="text-indigo-500" />
                         )}
                       </div>
-                      <span className="font-bold text-gray-800 ml-1">
+                      <span className="font-bold text-gray-800 ml-1 text-sm md:text-base">
                         {comment.user?.name || "Anonymous"}
                       </span>
                     </div>
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center justify-between w-full sm:w-auto">
                       <div className="flex items-center text-xs text-gray-500">
-                        <Clock size={14} className="mr-1" />
-                        <time>
+                        <Clock size={12} className="mr-1" />
+                        <time className="text-xs truncate max-w-[120px] sm:max-w-full">
                           {new Date(comment.createdAt).toLocaleString()}
                         </time>
                       </div>
                       {session?.user?.id === comment.user?._id && (
-                        <div className="flex space-x-2 ml-3">
-                          <button
-                            onClick={() => handleEditComment(comment._id)}
-                            className="text-indigo-500 hover:text-indigo-700 transition-colors"
-                            aria-label="Edit comment"
-                          >
-                            <Edit size={16} />
-                          </button>
+                        <div className="flex space-x-2 ml-2 sm:ml-3">
                           <button
                             onClick={() => handleDeleteComment(comment._id)}
-                            className="text-red-500 hover:text-red-700 transition-colors"
+                            className="text-red-500 hover:text-red-700 transition-colors p-1"
                             aria-label="Delete comment"
                           >
                             <Trash2 size={16} />
@@ -158,7 +151,9 @@ export default function CommentsList({ hymnId }) {
                       )}
                     </div>
                   </div>
-                  <div className="pl-10 text-gray-700">{comment.content}</div>
+                  <div className="pl-2 sm:pl-8 md:pl-10 text-gray-700 text-sm md:text-base break-words">
+                    {comment.content}
+                  </div>
                 </>
               )}
             </div>

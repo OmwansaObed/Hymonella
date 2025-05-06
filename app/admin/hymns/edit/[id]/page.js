@@ -698,7 +698,7 @@ const EditHymnPage = () => {
                       </div>
                     </div>
 
-                    {/* Image Upload Section */}
+                    {/*  Upload Section */}
                     <div className="mb-8">
                       <h2 className="text-xl font-semibold text-indigo-700 mb-6 flex items-center">
                         <FileText size={18} className="mr-2" />
