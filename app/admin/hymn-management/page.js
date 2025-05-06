@@ -246,7 +246,7 @@ const HymnManagementPage = () => {
                       className="cursor-pointer py-3 px-4 bg-indigo-50 text-left text-gray-700"
                     >
                       <div className="flex items-center">
-                        Title{" "}
+                        Title
                         {sortField === "title" ? (
                           sortDirection === "asc" ? (
                             <ArrowUpDown size={16} className="ml-2" />
@@ -264,7 +264,7 @@ const HymnManagementPage = () => {
                       className="cursor-pointer py-3 px-4 bg-indigo-50 text-left text-gray-700"
                     >
                       <div className="flex items-center">
-                        Author{" "}
+                        Author
                         {sortField === "author" ? (
                           sortDirection === "asc" ? (
                             <ArrowUpDown size={16} className="ml-2" />
@@ -282,7 +282,7 @@ const HymnManagementPage = () => {
                       className="cursor-pointer py-3 px-4 bg-indigo-50 text-left text-gray-700"
                     >
                       <div className="flex items-center">
-                        Category{" "}
+                        Category
                         {sortField === "category" ? (
                           sortDirection === "asc" ? (
                             <ArrowUpDown size={16} className="ml-2" />
@@ -301,7 +301,7 @@ const HymnManagementPage = () => {
                       className="cursor-pointer py-3 px-4 bg-indigo-50 text-left text-gray-700"
                     >
                       <div className="flex items-center">
-                        Favorites{" "}
+                        Favorites
                         {sortField === "favorites" ? (
                           sortDirection === "asc" ? (
                             <ArrowUpDown size={16} className="ml-2" />
