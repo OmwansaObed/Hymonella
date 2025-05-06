@@ -295,24 +295,7 @@ const HymnManagementPage = () => {
                         ) : null}
                       </div>
                     </th>
-                    {/* <th
-                      onClick={() => handleSort("views")}
-                      className="cursor-pointer py-3 px-4 bg-indigo-50 text-left text-gray-700"
-                    >
-                      <div className="flex items-center">
-                        Views{" "}
-                        {sortField === "views" ? (
-                          sortDirection === "asc" ? (
-                            <ArrowUpDown size={16} className="ml-2" />
-                          ) : (
-                            <ArrowUpDown
-                              size={16}
-                              className="ml-2 transform rotate-180"
-                            />
-                          )
-                        ) : null}
-                      </div>
-                    </th> */}
+
                     <th
                       onClick={() => handleSort("favorites")}
                       className="cursor-pointer py-3 px-4 bg-indigo-50 text-left text-gray-700"
@@ -446,9 +429,10 @@ const HymnManagementPage = () => {
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Confirm Delete</h2>
                 <p>
-                  Are you sure you want to delete the hymn "{hymnToDelete.title}
-                  "?
+                  Are you sure you want to delete the hymn &quot;
+                  {hymnToDelete.title}&quot;?
                 </p>
+
                 <div className="mt-4 flex justify-end gap-3">
                   <button
                     onClick={cancelDelete}

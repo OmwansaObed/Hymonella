@@ -168,8 +168,9 @@ const FavoritesPage = () => {
                 No Favorites Yet
               </h2>
               <p className="text-gray-600 mb-8 max-w-md mx-auto">
-                You haven't added any hymns to your favorites collection yet.
-                Discover hymns and mark them with a heart to save them here.
+                You haven&apos;t added any hymns to your favorites collection
+                yet. Discover hymns and mark them with a heart to save them
+                here.
               </p>
               <Link
                 href="/hymns"
