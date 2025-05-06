@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { UploadButton, UploadDropzone } from "@/lib/uploadthing";
 import { X, Image as ImageIcon } from "lucide-react";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function UploadImage({ onChange, existingImages = [] }) {
   const [uploadedImages, setUploadedImages] = useState(existingImages || []);
@@ -48,7 +49,7 @@ export default function UploadImage({ onChange, existingImages = [] }) {
             {uploadedImages.map((imageUrl, index) => (
               <div key={`uploaded-${index}`} className="relative group">
                 <div className="h-80 w-80 rounded-lg shadow-lg overflow-hidden ">
-                  <img
+                  <Image
                     src={imageUrl}
                     alt={`Uploaded ${index + 1}`}
                     className="object-cover w-full h-full"

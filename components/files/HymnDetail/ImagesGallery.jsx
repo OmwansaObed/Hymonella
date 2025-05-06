@@ -1,4 +1,5 @@
 import { BookOpen, Maximize2 } from "lucide-react";
+import Image from "next/image";
 
 export default function ImagesGallery({ images, title, onExpand }) {
   return (
@@ -15,7 +16,7 @@ export default function ImagesGallery({ images, title, onExpand }) {
             className="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md group cursor-pointer relative"
             onClick={() => onExpand(img)}
           >
-            <img
+            <Image
               src={img}
               alt={`${title} music sheet ${index + 1}`}
               className="object-cover w-full h-full transform group-hover:scale-105 transition-transform"

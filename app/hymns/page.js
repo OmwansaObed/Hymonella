@@ -321,7 +321,7 @@ const AllHymnsPage = () => {
                 No Hymns Found
               </h3>
               <p className="text-gray-600 mb-4">
-                We couldn't find any hymns matching your search criteria.
+                We couldn&apos;t find any hymns matching your search criteria.
               </p>
               <button
                 onClick={() => {

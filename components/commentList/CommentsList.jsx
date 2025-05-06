@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function CommentsList({ hymnId }) {
   const { data: session } = useSession();
@@ -117,7 +118,7 @@ export default function CommentsList({ hymnId }) {
                     <div className="flex items-center">
                       <div className="bg-gradient-to-br rounded-full mr-3">
                         {comment.user?.image ? (
-                          <img
+                          <Image
                             src={comment.user.image}
                             alt={comment.user.name}
                             className="w-6 h-6 rounded-full"

@@ -13,6 +13,7 @@ import {
   LayoutDashboard,
   User as UserIcon,
 } from "lucide-react";
+import Image from "next/image";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -146,7 +147,7 @@ export const Navbar = () => {
                   } transition-colors`}
                 >
                   {session.user.image ? (
-                    <img
+                    <Image
                       src={session.user.image}
                       alt="User profile"
                       className="w-full h-full border border-gray-300 rounded-full object-cover"
@@ -271,7 +272,7 @@ export const Navbar = () => {
                 <div className="p-3 flex items-center space-x-3 rounded-lg">
                   <div className="flex items-center space-x-3 border border-white rounded-full ">
                     {session.user.image ? (
-                      <img
+                      <Image
                         src={session.user.image}
                         alt="User profile"
                         className="w-8 h-8 rounded-full object-cover"

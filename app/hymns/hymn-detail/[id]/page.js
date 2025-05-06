@@ -23,6 +23,7 @@ import { useParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import CommentsList from "@/components/commentList/CommentsList";
+import Image from "next/image";
 
 const formatTime = (seconds) => {
   const minutes = Math.floor(seconds / 60);
@@ -492,7 +493,7 @@ const HymnDetailPage = () => {
                       className="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md group cursor-pointer relative"
                       onClick={() => openImageModal(img)}
                     >
-                      <img
+                      <Image
                         src={img}
                         alt={`${hymn.title} music sheet ${index + 1}`}
                         className="object-cover w-full h-full transform group-hover:scale-105 transition-transform"
@@ -610,7 +611,7 @@ const HymnDetailPage = () => {
             >
               <X size={24} />
             </button>
-            <img
+            <Image
               src={expandedImage}
               alt="Enlarged view"
               className="max-w-full max-h-full object-contain"
