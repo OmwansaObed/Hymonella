@@ -13,12 +13,14 @@ import {
 import axios from "axios";
 import LoadingSpinner from "@/components/home/general/LoadingSpinner";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const HomePage = () => {
   const [featuredHymn, setFeaturedHymn] = useState(null);
   const [recentHymns, setRecentHymns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchHymns = async () => {
@@ -112,6 +114,17 @@ const HomePage = () => {
                 Favorites
               </span>
             </Link>
+            {session?.user.isAdmin && (
+              <Link
+                href="/admin"
+                className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full shadow-md hover:shadow-lg transition-all"
+              >
+                <span className="flex items-center">
+                  <Settings size={18} className="mr-2" />
+                  Admin Dashboard
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </section>
