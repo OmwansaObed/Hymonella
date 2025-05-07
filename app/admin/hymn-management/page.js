@@ -425,7 +425,7 @@ const HymnManagementPage = () => {
 
           {/* Delete Confirmation Modal */}
           {showDeleteConfirmation && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="fixed inset-0 backdrop-blur bg-opacity-50 flex items-center justify-center">
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Confirm Delete</h2>
                 <p>
