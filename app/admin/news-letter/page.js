@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Mail, Calendar, Eye } from "lucide-react";
 import axios from "axios";
 import LoadingSpinner from "@/components/home/general/LoadingSpinner";
-import Link from "next/link";
 import Sidebar from "@/components/home/admin/SideBar";
 import toast from "react-hot-toast";
 
