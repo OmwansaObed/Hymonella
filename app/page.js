@@ -9,6 +9,8 @@ import {
   Plus,
   SearchIcon,
   BookOpen,
+  Settings,
+  LayoutDashboard,
 } from "lucide-react";
 import axios from "axios";
 import LoadingSpinner from "@/components/home/general/LoadingSpinner";
@@ -116,11 +118,11 @@ const HomePage = () => {
             </Link>
             {session?.user.isAdmin && (
               <Link
-                href="/admin"
+                href="/admin/dashboard"
                 className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full shadow-md hover:shadow-lg transition-all"
               >
                 <span className="flex items-center">
-                  <Settings size={18} className="mr-2" />
+                  <LayoutDashboard size={18} className="mr-2" />
                   Admin Dashboard
                 </span>
               </Link>
