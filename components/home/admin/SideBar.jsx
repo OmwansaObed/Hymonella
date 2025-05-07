@@ -70,7 +70,11 @@ const Sidebar = () => {
 
   const navItems = [
     { path: "/admin/dashboard", name: "Dashboard", icon: <Home size={20} /> },
-    { path: "/admin/hymns", name: "Manage Hymns", icon: <Music size={20} /> },
+    {
+      path: "/admin/hymn-management",
+      name: "Manage Hymns",
+      icon: <Music size={20} />,
+    },
     {
       path: "/admin/hymns/add",
       name: "Add Hymn",

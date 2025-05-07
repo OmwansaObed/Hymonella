@@ -1,9 +1,9 @@
 // app/api/contact/route.js
 import connectDB from "@/lib/connectDB";
-import Contact from "@/models/contact.model";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { NextResponse } from "next/server";
+import NewsLetter from "@/models/newsletter.modal";
 
 export async function POST(req) {
   try {
@@ -11,7 +11,7 @@ export async function POST(req) {
     const body = await req.json();
     const { email } = body;
 
-    const newContact = await Contact.create({ email });
+    const newContact = await NewsLetter.create({ email });
     ``;
     return NextResponse.json({ success: true, contact: newContact });
   } catch (err) {
@@ -35,7 +35,7 @@ export async function GET(req) {
 
     await connectDB();
 
-    const contacts = await Contact.find({}).sort({ createdAt: -1 }).lean();
+    const contacts = await NewsLetter.find({}).sort({ createdAt: -1 }).lean();
 
     return NextResponse.json({ success: true, contacts });
   } catch (err) {
