@@ -4,6 +4,7 @@ import Contact from "@/models/contact.model";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { NextResponse } from "next/server";
+import NewsLetter from "@/models/newsletter.modal";
 
 export async function POST(req) {
   try {
@@ -11,9 +12,16 @@ export async function POST(req) {
     const body = await req.json();
     const { email } = body;
 
-    const newContact = await Contact.create({ email });
-    ``;
-    return NextResponse.json({ success: true, contact: newContact });
+    // check existng
+    const existingEmail = await NewsLetter.findOne({ email });
+    if (existingEmail) {
+      return NextResponse.json(
+        { success: false, message: "Email already exists" },
+        { status: 400 }
+      );
+    }
+    const newEmail = await NewsLetter.create({ email });
+    return NextResponse.json({ success: true, newEmail });
   } catch (err) {
     console.error(err);
     return NextResponse(
@@ -35,11 +43,11 @@ export async function GET(req) {
 
     await connectDB();
 
-    const contacts = await Contact.find({}).sort({ createdAt: -1 }).lean();
+    const emails = await NewsLetter.find({}).sort({ createdAt: -1 }).lean();
 
-    return NextResponse.json({ success: true, contacts });
+    return NextResponse.json({ success: true, emails });
   } catch (err) {
-    console.error("Error fetching contacts:", err);
+    console.error("Error fetching Emails:", err);
     return NextResponse.json(
       { success: false, error: err.message },
       { status: 500 }
