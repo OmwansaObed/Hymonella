@@ -101,9 +101,9 @@ export default function TermsOfUse() {
             </h3>
             <p>
               Our Service allows you to post, link, store, share, and otherwise
-              make available certain information, text, or material ("User
-              Content"), such as comments on hymns. You retain ownership rights
-              in your User Content.
+              make available certain information, text, or material (&quot;User
+              Content&quot;), such as comments on hymns. You retain ownership
+              rights in your User Content.
             </p>
 
             <h3 className="text-lg font-serif font-semibold text-indigo-600 mt-6 mb-3">
@@ -221,10 +221,11 @@ export default function TermsOfUse() {
                 IMPORTANT NOTICE:
               </p>
               <p className="m-0">
-                THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT
-                WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING,
-                BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY,
-                FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+                THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS
+                AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS
+                OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+                MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+                NON-INFRINGEMENT.
               </p>
             </div>
 
@@ -254,7 +255,7 @@ export default function TermsOfUse() {
             </h2>
             <p>
               We reserve the right to modify or replace these Terms at any time.
-              If a revision is material, we will provide at least 30 days'
+              If a revision is material, we will provide at least 30 days&#39;
               notice prior to any new terms taking effect.
             </p>
 

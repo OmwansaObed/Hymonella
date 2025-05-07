@@ -373,8 +373,8 @@ const AboutPage = () => {
             </h2>
             <div className="h-1 w-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded mx-auto mb-6" />
             <p className="text-lg text-indigo-800 max-w-3xl mx-auto opacity-90">
-              Have questions or suggestions? Joining our team? We'd love to hear
-              from you
+              Have questions or suggestions? Joining our team? We&apos;d love to
+              hear from you
             </p>
           </div>
 
@@ -394,7 +394,8 @@ const AboutPage = () => {
                   </p>
                   <p className="text-indigo-100 text-sm">
                     We typically respond within 1-2 business days. For urgent
-                    inquiries, please include "URGENT" in your subject line.
+                    inquiries, please include &quot;URGENT&quot; in your subject
+                    line.
                   </p>
                 </div>
               </div>
@@ -410,8 +411,8 @@ const AboutPage = () => {
                       Thank You!
                     </h3>
                     <p className="text-gray-600 mb-6">
-                      Your message has been sent successfully. We'll get back to
-                      you soon.
+                      Your message has been sent successfully. We&apos;ll get
+                      back to you soon.
                     </p>
                     <button
                       onClick={resetForm}

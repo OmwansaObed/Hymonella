@@ -50,11 +50,11 @@ export default function PrivacyPolicy() {
                 account, we collect your name, email address, and password.
               </li>
               <li>
-                <strong>Profile Information</strong>: Optional profile pictures
-                or other information you choose to add.
+                <strong>Profile Information</strong>: profile pictures or other
+                information are collected when you use social features to login
               </li>
               <li>
-                <strong>Authentication Data</strong>: If you sign in using
+                <strong>Authentication Data</strong>: When you sign in using
                 third-party services (like Google or Facebook), we receive basic
                 profile information from these providers.
               </li>
@@ -139,8 +139,8 @@ export default function PrivacyPolicy() {
             <p>You can:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>
-                Update or correct your account information through your profile
-                settings
+                For any update use the contact form in the about page to request
+                changes
               </li>
               <li>Control cookie settings through your browser</li>
               <li>Opt-out of promotional communications</li>
@@ -162,7 +162,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <h2 className="text-xl md:text-2xl font-serif font-bold text-indigo-700 mt-8 mb-4">
-              Children's Privacy
+              Children&apos;s Privacy
             </h2>
             <p>
               Our service is not directed to children under 13, and we do not
@@ -189,11 +189,10 @@ export default function PrivacyPolicy() {
             </p>
             <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-4 md:p-6 rounded-xl mt-4">
               <p className="font-medium text-indigo-700 mb-2">
-                Email: privacy@hymnalapp.com
+                Email: info-hymonella@gmail.com
               </p>
               <p className="font-medium text-indigo-700">
-                Postal Address: Hymnal App Privacy Team, 123 Music Lane, Harmony
-                City, HC 12345
+                Address: info-hymonella@gmail.com
               </p>
             </div>
 
