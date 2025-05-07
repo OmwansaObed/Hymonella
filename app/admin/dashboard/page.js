@@ -27,7 +27,6 @@ const AdminDashboard = () => {
         const favoritesResponse = await axios.get(
           "/api/users/favorites?globalCount=true"
         );
-        console.log("favoriteResponse", favoritesResponse);
 
         // Get statistics
         const totalHymns = hymnsResponse.data.length;

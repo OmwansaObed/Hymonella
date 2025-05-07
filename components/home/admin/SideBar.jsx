@@ -17,6 +17,9 @@ import {
   BarChart3,
   Bookmark,
   Search,
+  Users2,
+  Mail,
+  LogIn,
 } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 
@@ -84,7 +87,16 @@ const Sidebar = () => {
       name: "Comments",
       icon: <BarChart3 size={20} />,
     },
-    // { path: "/admin/settings", name: "Settings", icon: <Settings size={20} /> },
+    {
+      path: "/admin/contact",
+      name: "Contacts",
+      icon: <Users2 size={20} />,
+    },
+    {
+      path: "/admin/news-letter",
+      name: "News Letter",
+      icon: <Mail size={20} />,
+    },
   ];
 
   return (
@@ -178,15 +190,27 @@ const Sidebar = () => {
               <span className="ml-3">View Website</span>
             )}
           </Link>
-          <button
-            onClick={handleLogout}
-            className="flex items-center p-3 rounded-md bg-red-500/30 text-indigo-100 hover:bg-red-500 w-full"
-          >
-            <LogOut size={20} />
-            {(!collapsed || isMobile) && (
-              <span className="ml-3 ">Sign Out</span>
-            )}
-          </button>
+          {session?.user ? (
+            <button
+              onClick={handleLogout}
+              className="flex items-center p-3 rounded-md bg-red-500/30 text-indigo-100 hover:bg-red-500 w-full"
+            >
+              <LogOut size={20} />
+              {(!collapsed || isMobile) && (
+                <span className="ml-3 ">Sign Out</span>
+              )}
+            </button>
+          ) : (
+            <button
+              onClick={() => router.push("/auth/login")}
+              className="flex items-center p-3 rounded-md bg-blue-500 text-indigo-100 hover:bg-indigo-500 w-full"
+            >
+              <LogIn size={20} />
+              {(!collapsed || isMobile) && (
+                <span className="ml-3 ">Sign In</span>
+              )}
+            </button>
+          )}
 
           {/* Optional: Display user info */}
           {(!collapsed || isMobile) && session?.user && (
