@@ -34,7 +34,7 @@ export default function TermsOfUse() {
               These Terms of Use govern your access to and use of our hymnal web
               application, including any content, functionality, and services
               offered through our website or mobile application (collectively,
-              the "Service").
+              the &quot;Service&quot;).
             </p>
 
             <p>
