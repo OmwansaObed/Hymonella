@@ -25,6 +25,7 @@ export async function DELETE(request, context) {
   try {
     await connectDB();
     const { id } = await context.params;
+    console.log("recieved id: ", id);
     const hymn = await Hymn.findByIdAndDelete(id);
     if (!hymn || hymn.length === 0)
       return NextResponse.json({ message: "Hymn not found" }, { status: 404 });

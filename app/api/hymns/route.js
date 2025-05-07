@@ -11,7 +11,10 @@ export async function GET(request) {
     });
 
     if (!hymns || hymns.length === 0) {
-      return NextResponse.json({ message: "No hymns found" }, { status: 404 });
+      return NextResponse.json(
+        { message: "No hymns have been added yet" },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json(hymns, { status: 200 });
@@ -64,5 +67,31 @@ export async function POST(request) {
   } catch (error) {
     console.error(error.message);
     return NextResponse.json({ message: error.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    await connectDB();
+
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    console.log("Received ID:", id);
+
+    if (!id) {
+      return NextResponse.json({ message: "No ID provided" }, { status: 400 });
+    }
+
+    const hymn = await Hymn.findByIdAndDelete(id);
+
+    if (!hymn) {
+      return NextResponse.json({ message: "Hymn not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(hymn, { status: 200 });
+  } catch (error) {
+    console.error("DELETE error:", error.message);
+    return NextResponse.json({ message: error.message }, { status: 400 });
   }
 }

@@ -5,11 +5,14 @@ import axios from "axios";
 import LoadingSpinner from "@/components/home/general/LoadingSpinner";
 import Link from "next/link";
 import Sidebar from "@/components/home/admin/SideBar";
+import toast from "react-hot-toast";
 
 const CategoryAdmin = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deletingCategory, setDeletingCategory] = useState(null);
 
   // Fetch categories on component mount
   useEffect(() => {
@@ -23,10 +26,37 @@ const CategoryAdmin = () => {
       setCategories(response.data);
       setError(null);
     } catch (err) {
-      setError("Failed to load categories. Please try again.");
+      setError(
+        err.response?.data?.message ||
+          "Failed to load categories. Please try again."
+      );
       console.error(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDeleteClick = (category) => {
+    setDeletingCategory(category);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!deletingCategory) return;
+
+    try {
+      setLoading(true);
+      await axios.delete(`/api/categories/${deletingCategory._id}`);
+      fetchCategories(); // Refresh list
+      toast.success("Category deleted successfully");
+      setLoading(false);
+    } catch (err) {
+      setError("Failed to delete category");
+      console.error(err);
+      toast.error("Failed to delete category");
+    } finally {
+      setShowDeleteModal(false);
+      setDeletingCategory(null);
     }
   };
 
@@ -97,20 +127,7 @@ const CategoryAdmin = () => {
                           <Edit size={18} />
                         </Link>
                         <button
-                          onClick={() => {
-                            if (
-                              confirm(
-                                "Are you sure you want to delete this category?"
-                              )
-                            ) {
-                              axios
-                                .delete(`/api/categories/${category._id}`)
-                                .then(() => fetchCategories())
-                                .catch((err) =>
-                                  setError("Failed to delete category")
-                                );
-                            }
-                          }}
+                          onClick={() => handleDeleteClick(category)}
                           className="p-2 text-red-600 hover:bg-red-50 rounded-md"
                         >
                           <Trash2 size={18} />
@@ -124,6 +141,45 @@ const CategoryAdmin = () => {
           )}
         </div>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg w-96 p-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              Confirm Deletion
+            </h3>
+            <p className="text-sm text-gray-600 mb-6">
+              Are you sure you want to delete the category{" "}
+              <span className="font-medium">{deletingCategory?.name}</span>?
+              This action cannot be undone.
+            </p>
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-md"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="px-4 py-2 bg-red-600 text-white hover:bg-red-700 rounded-md"
+              >
+                {loading ? (
+                  <div className="flex items-center space-x-2" aria-disabled>
+                    <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white"></div>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <Trash2 size={18} />
+                    <span>Delete</span>
+                  </div>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

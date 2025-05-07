@@ -77,7 +77,7 @@ const CommentsAdmin = () => {
     } catch (err) {
       console.error(err);
       setComments([]);
-      setError("Failed to load comments");
+      setError(err.response?.data?.message || "Failed to load comments");
     } finally {
       setLoading(false);
     }

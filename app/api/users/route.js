@@ -13,7 +13,10 @@ export async function GET(request) {
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        { message: "Log in first to see all users" },
+        { status: 401 }
+      );
     }
 
     const { searchParams } = new URL(request.url);

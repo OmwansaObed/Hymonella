@@ -73,7 +73,7 @@ const ReceivedContactsAdmin = () => {
     } catch (err) {
       console.error(err);
       setContacts([]);
-      setError("Failed to load Emails");
+      setError(err?.response?.data?.message || "Failed to load Emails");
       toast.error("Error loading emails");
     } finally {
       setLoading(false);

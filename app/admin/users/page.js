@@ -73,7 +73,7 @@ const UserAdmin = () => {
       setUsers(response.data?.users || []);
       setError(null);
     } catch (err) {
-      setError("Failed to load users");
+      setError(err.response?.data?.message || "Failed to load users");
       console.error(err);
       setUsers([]);
     } finally {

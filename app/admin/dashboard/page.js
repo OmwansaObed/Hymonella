@@ -167,7 +167,9 @@ const AdminDashboard = () => {
                       </div>
                     ))
                   ) : (
-                    <p className="px-6 py-4 text-gray-500">No hymns found.</p>
+                    <p className="px-6 py-4 text-gray-500">
+                      No hymns found have been added yet
+                    </p>
                   )}
                 </div>
                 <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">

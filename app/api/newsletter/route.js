@@ -1,6 +1,5 @@
 // app/api/contact/route.js
 import connectDB from "@/lib/connectDB";
-import Contact from "@/models/contact.model";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { NextResponse } from "next/server";
@@ -24,7 +23,7 @@ export async function POST(req) {
     return NextResponse.json({ success: true, newEmail });
   } catch (err) {
     console.error(err);
-    return NextResponse(
+    return NextResponse.json(
       { success: false, error: err.message },
       { status: 500 }
     );
@@ -36,7 +35,7 @@ export async function GET(req) {
 
     if (!session || !session.user.isAdmin) {
       return NextResponse.json(
-        { message: "Only Admins can view this" },
+        { message: "you have to login first to see all emails" },
         { status: 401 }
       );
     }

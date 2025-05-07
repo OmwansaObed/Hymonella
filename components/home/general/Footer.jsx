@@ -9,6 +9,7 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   const handleChange = (e) => {
     setEmail(e.target.value); // Directly set the string value
@@ -29,7 +30,13 @@ export const Footer = () => {
 
       if (response.status === 200) {
         toast.success("Subscribed successfully!");
-        setEmail(""); // Clear the input on success
+        setEmail("");
+        setIsSubscribed(true); // Show success message
+
+        // Hide it after 5 seconds
+        setTimeout(() => {
+          setIsSubscribed(false);
+        }, 5000);
       } else {
         throw new Error("Subscription failed");
       }
@@ -43,10 +50,9 @@ export const Footer = () => {
       setIsSubmitting(false);
     }
   };
-
   return (
     <footer className="bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 text-white">
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-6xl mx-auto px-4 py-12 ">
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand section */}
@@ -163,35 +169,62 @@ export const Footer = () => {
           </div>
 
           {/* Newsletter */}
+          {/* Newsletter */}
           <form onSubmit={handleSubmit} className="col-span-1">
             <h3 className="font-serif font-bold text-lg mb-4 text-indigo-200">
               Stay Updated
             </h3>
-            <p className="text-indigo-200 mb-3">
-              Subscribe to receive new hymns and updates
-            </p>
-            <div className="relative">
-              <input
-                type="email"
-                placeholder="Your email address"
-                name="email"
-                value={email}
-                onChange={handleChange}
-                className="w-full px-4 py-2 rounded-full bg-indigo-800/50 border border-indigo-700 placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                required
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`absolute right-1 top-1 rounded-full px-4 py-1 text-sm font-medium transition-all ${
-                  isSubmitting
-                    ? "bg-indigo-700 cursor-not-allowed"
-                    : "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500"
-                } text-white`}
-              >
-                {isSubmitting ? "Subscribing..." : "Subscribe"}
-              </button>
-            </div>
+
+            {/* Success Message */}
+            {isSubscribed ? (
+              <div className="p-3 bg-green-900/30 border border-green-700 rounded-lg text-green-200 text-sm mb-4 animate-fade-in">
+                <div className="flex items-center space-x-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-5 h-5 text-green-400"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>You're all set! Thank you for subscribing.</span>
+                </div>
+              </div>
+            ) : (
+              <>
+                <p className="text-indigo-200 mb-3">
+                  Subscribe to receive new hymns and updates
+                </p>
+                <div className="relative">
+                  <input
+                    type="email"
+                    placeholder="Your email address"
+                    name="email"
+                    value={email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 rounded-full bg-indigo-800/50 border border-indigo-700 placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`absolute right-1 top-1 rounded-full px-4 py-1 text-sm font-medium transition-all ${
+                      isSubmitting
+                        ? "bg-indigo-700 cursor-not-allowed"
+                        : "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500"
+                    } text-white`}
+                  >
+                    {isSubmitting ? "Subscribing..." : "Subscribe"}
+                  </button>
+                </div>
+              </>
+            )}
           </form>
         </div>
 

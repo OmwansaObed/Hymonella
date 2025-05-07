@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import Sidebar from "@/components/home/admin/SideBar";
 import LoadingSpinner from "@/components/home/general/LoadingSpinner";
+import toast from "react-hot-toast";
 
 const HymnManagementPage = () => {
   const [hymns, setHymns] = useState([]);
@@ -49,14 +50,13 @@ const HymnManagementPage = () => {
         setHymns(hymnsResponse.data);
         setFilteredHymns(hymnsResponse.data);
 
-        console.log("Hymns res", hymnsResponse.data);
-
         // Fetch categories
         const categoriesResponse = await axios.get("/api/categories");
         setCategories(categoriesResponse.data);
       } catch (err) {
         setError(
-          "Failed to load hymns and categories. Please try again later."
+          err.response?.data?.message ||
+            "Failed to load hymns and categories. Please try again later."
         );
         console.error(err);
       } finally {
@@ -152,7 +152,13 @@ const HymnManagementPage = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`/api/admin/hymns/${hymnToDelete._id}`);
+      if (!hymnToDelete) {
+        return;
+      }
+      setLoading(true);
+      await axios.delete(`/api/hymns/${hymnToDelete._id}`);
+
+      console.log("HymnId", hymnToDelete._id);
       setHymns((prevHymns) =>
         prevHymns.filter((hymn) => hymn._id !== hymnToDelete._id)
       );
@@ -161,9 +167,13 @@ const HymnManagementPage = () => {
       );
       setShowDeleteConfirmation(false);
       setHymnToDelete(null);
+
+      toast.success("Hymn deleted successfully.");
+      setLoading(false);
     } catch (err) {
       setError("Failed to delete hymn. Please try again.");
       console.error(err);
+      toast.error("Failed to delete hymn.");
     }
   };
 
@@ -353,7 +363,7 @@ const HymnManagementPage = () => {
                           >
                             <Eye
                               size={20}
-                              className="text-gray-500 hover:text-indigo-600"
+                              className="text-gray-500 rounded-md bg-blue-100 hover:text-blue-600"
                             />
                           </Link>
                           <Link
@@ -362,7 +372,7 @@ const HymnManagementPage = () => {
                           >
                             <Edit2
                               size={20}
-                              className="text-gray-500 hover:text-indigo-600"
+                              className="text-gray-500 rounded-md bg-green-100 hover:text-green-600"
                             />
                           </Link>
                           <button
@@ -371,7 +381,7 @@ const HymnManagementPage = () => {
                           >
                             <Trash2
                               size={20}
-                              className="text-gray-500 hover:text-red-600"
+                              className="text-gray-500 rounded-md bg-red-100 hover:text-red-600"
                             />
                           </button>
                         </div>
@@ -427,8 +437,10 @@ const HymnManagementPage = () => {
           {showDeleteConfirmation && (
             <div className="fixed inset-0 backdrop-blur bg-opacity-50 flex items-center justify-center">
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold mb-4">Confirm Delete</h2>
-                <p>
+                <h2 className="text-xl font-semibold mb-4 text-black">
+                  Confirm Delete
+                </h2>
+                <p className="mb-4 text-gray-700">
                   Are you sure you want to delete the hymn &quot;
                   {hymnToDelete.title}&quot;?
                 </p>
@@ -444,7 +456,13 @@ const HymnManagementPage = () => {
                     onClick={confirmDelete}
                     className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
                   >
-                    Delete
+                    {loading ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 disabled border-white"></div>
+                      </div>
+                    ) : (
+                      "Delete"
+                    )}
                   </button>
                 </div>
               </div>

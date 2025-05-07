@@ -86,7 +86,7 @@ const ReceivedContactsAdmin = () => {
     } catch (err) {
       console.error(err);
       setContacts([]);
-      setError("Failed to load contacts");
+      setError(err?.response?.data?.message || "Failed to load contacts");
       toast.error("Error loading contacts");
     } finally {
       setLoading(false);

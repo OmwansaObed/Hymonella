@@ -7,12 +7,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    await connectDB(); // Connect to DB
+    await connectDB();
     const body = await req.json();
     const { name, email, message } = body;
 
     const newContact = await Contact.create({ name, email, message });
-    ``;
     return NextResponse.json({ success: true, contact: newContact });
   } catch (err) {
     console.error(err);
@@ -28,7 +27,7 @@ export async function GET(req) {
 
     if (!session || !session.user.isAdmin) {
       return NextResponse.json(
-        { message: "Only Admins can view this" },
+        { message: "Remember to log in first." },
         { status: 401 }
       );
     }

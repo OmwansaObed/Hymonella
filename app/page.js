@@ -38,7 +38,10 @@ const HomePage = () => {
           setRecentHymns(filtered);
         }
       } catch (err) {
-        setError("Failed to load hymns. Please try again later.");
+        setError(
+          err.response?.data?.message ||
+            "Failed to load hymns. Please try again later."
+        );
         console.error(err);
       } finally {
         setLoading(false);
